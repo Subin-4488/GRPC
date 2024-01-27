@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package ServerStreamEX;
+
+message RandomNumber{
+      int32 rNumber = 1;
+}
+
+message EvenFlag{
+      bool flag = 1;
+}
+
+service RandomGenerator{
+     rpc GenerateRandomNumber(EvenFlag) returns (stream RandomNumber) {}
+}

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package Greet;
+
+enum User{
+      default_user = 0;
+      admin = 1;
+      client = 2;
+}
+
+message Greetings{
+      string greetingsMessage = 1;
+}
+
+message PersonData{
+      User user = 1;
+      string name = 2;
+      int32 age = 3;
+}
+
+service GreetUser{
+     rpc WishUser(PersonData) returns (Greetings) {}
+}
