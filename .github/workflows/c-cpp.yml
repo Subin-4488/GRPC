@@ -16,18 +16,52 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Build and test A folder
+    - name: Build and test Asynchrounous GRPC Unary
       run: |
-        cd "grpc asynchronous"
+        cd "grpc asynchronous/grpc_unary"
+        mkdir build
+        cd build
+        cmake ..
+        make
+        make test
+    
+    - name: Build and test Asynchrounous GRPC Generalized
+      run: |
+        cd "../grpc_unary_generalized"
         mkdir build
         cd build
         cmake ..
         make
         make test
 
-    - name: Build and test B folder
+    - name: Build and test synchrounous GRPC Basic
       run: |
-        cd "../grpc synchronous"
+        cd "../../grpc synchronous/grpc_basic/"
+        mkdir build
+        cd build
+        cmake ..
+        make
+        make test
+    
+    - name: Build and test synchrounous GRPC Bidirectional Stream
+      run: |
+        cd "../grpc_bidirectional_stream"
+        mkdir build
+        cd build
+        cmake ..
+        make
+        make test
+    - name: Build and test synchrounous GRPC Server Stream
+      run: |
+        cd "../grpc_server_stream"
+        mkdir build
+        cd build
+        cmake ..
+        make
+        make test
+    - name: Build and test synchrounous GRPC Unary
+      run: |
+        cd "../grpc_unary"
         mkdir build
         cd build
         cmake ..
