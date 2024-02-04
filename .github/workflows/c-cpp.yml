@@ -16,22 +16,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup GRPC
-      run: |
-        sudo apt-get update
-        export MY_INSTALL_DIR=$HOME/.local
-        mkdir -p $MY_INSTALL_DIR
-        export PATH="$MY_INSTALL_DIR/bin:$PATH"
-        sudo apt install -y cmake
-        sudo apt install -y build-essential autoconf libtool pkg-config
-        git clone --recurse-submodules -b v1.60.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc
-        cd grpc
-        mkdir -p cmake/build
-        pushd cmake/build
-        cmake -DgRPC_INSTALL=ON \-DgRPC_BUILD_TESTS=OFF \-DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \../..
-        make
-        make install
-        popd
+    # - name: Setup GRPC
+    #   run: |
+    #     sudo apt-get update
+    #     export MY_INSTALL_DIR=$HOME/.local
+    #     mkdir -p $MY_INSTALL_DIR
+    #     export PATH="$MY_INSTALL_DIR/bin:$PATH"
+    #     sudo apt install -y cmake
+    #     sudo apt install -y build-essential autoconf libtool pkg-config
+    #     git clone --recurse-submodules -b v1.60.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc
+    #     cd grpc
+    #     mkdir -p cmake/build
+    #     pushd cmake/build
+    #     cmake -DgRPC_INSTALL=ON \-DgRPC_BUILD_TESTS=OFF \-DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \../..
+    #     make
+    #     make install
+    #     popd
 
     - name: Build and test Asynchronous GRPC Unary
       run: |
@@ -43,7 +43,8 @@ jobs:
 
     - name: Build and test Asynchronous GRPC Generalized
       run: |
-        cd "../grpc_unary_generalized"
+        cd ".."
+        cd "grpc_unary_generalized"
         mkdir build
         cd build
         cmake ..
@@ -51,7 +52,9 @@ jobs:
 
     - name: Build and test Synchronous GRPC Basic
       run: |
-        cd "../../grpc synchronous/grpc_basic/"
+        cd ".."
+        cd ".."
+        cd "grpc synchronous/grpc_basic/"
         mkdir build
         cd build
         cmake ..
@@ -59,7 +62,8 @@ jobs:
 
     - name: Build and test Synchronous GRPC Bidirectional Stream
       run: |
-        cd "../grpc_bidirectional_stream"
+        cd ".."
+        cd "grpc_bidirectional_stream"
         mkdir build
         cd build
         cmake ..
@@ -67,7 +71,8 @@ jobs:
 
     - name: Build and test Synchronous GRPC Server Stream
       run: |
-        cd "../grpc_server_stream"
+        cd ".."
+        cd "grpc_server_stream"
         mkdir build
         cd build
         cmake ..
@@ -75,7 +80,8 @@ jobs:
 
     - name: Build and test Synchronous GRPC Unary
       run: |
-        cd "../grpc_unary"
+        cd ".."
+        cd "grpc_unary"
         mkdir build
         cd build
         cmake ..
