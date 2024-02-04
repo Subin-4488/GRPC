@@ -26,7 +26,7 @@ jobs:
         cd "grpc asynchronous/grpc_unary"
         mkdir build
         cd build
-        cmake -DProtobuf_DIR=/usr/lib/x86_64-linux-gnu/cmake/protobuf ..
+        cmake ..
         make
         make test
 
@@ -35,7 +35,7 @@ jobs:
         cd "../grpc_unary_generalized"
         mkdir build
         cd build
-        cmake -DProtobuf_DIR=/usr/lib/x86_64-linux-gnu/cmake/protobuf ..
+        cmake ..
         make
         make test
 
@@ -44,7 +44,7 @@ jobs:
         cd "../../grpc synchronous/grpc_basic/"
         mkdir build
         cd build
-        cmake -DProtobuf_DIR=/usr/lib/x86_64-linux-gnu/cmake/protobuf ..
+        cmake ..
         make
         make test
 
@@ -53,7 +53,7 @@ jobs:
         cd "../grpc_bidirectional_stream"
         mkdir build
         cd build
-        cmake -DProtobuf_DIR=/usr/lib/x86_64-linux-gnu/cmake/protobuf ..
+        cmake ..
         make
         make test
 
@@ -62,7 +62,7 @@ jobs:
         cd "../grpc_server_stream"
         mkdir build
         cd build
-        cmake -DProtobuf_DIR=/usr/lib/x86_64-linux-gnu/cmake/protobuf ..
+        cmake ..
         make
         make test
 
@@ -71,6 +71,6 @@ jobs:
         cd "../grpc_unary"
         mkdir build
         cd build
-        cmake -DProtobuf_DIR=/usr/lib/x86_64-linux-gnu/cmake/protobuf ..
+        cmake ..
         make
         make test
