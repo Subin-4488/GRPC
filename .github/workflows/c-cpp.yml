@@ -16,10 +16,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Dependencies
+    - name: Install Protobuf
       run: |
         sudo apt-get update
         sudo apt-get install -y protobuf-compiler libprotobuf-dev
+
+    - name: Set CMAKE_PREFIX_PATH for Protobuf
+      run: |
+        echo "::set-env name=CMAKE_PREFIX_PATH::/usr/lib/x86_64-linux-gnu/cmake/protobuf"
 
     - name: Build and test Asynchronous GRPC Unary
       run: |
