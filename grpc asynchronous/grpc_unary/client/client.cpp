@@ -31,21 +31,16 @@ void Client::WishUser(PersonData personData, Greetings *msg)
 {
       std::cout << "requesting server..." << std::endl;
       ClientContext context;
-      CompletionQueue completionQueue;
-      
-      Status status;
-      void* tag;
-      bool ok;
 
       std::unique_ptr<ClientAsyncResponseReader<Greetings>> rpc(stub_->AsyncWishUser(&context, personData, &completionQueue));
 
-      rpc->Finish(msg, &status, (void*)1);
-      
+      rpc->Finish(msg, &status, (void *)1);
+
       std::cout << "Wait on NEXT" << std::endl;
       completionQueue.Next(&tag, &ok);
       std::cout << "Wait on temp" << std::endl;
 
-      if (status.ok() && tag == (void*)1)
+      if (status.ok() && tag == (void *)1)
       {
             std::cout << msg->greetingsmessage() << std::endl;
       }

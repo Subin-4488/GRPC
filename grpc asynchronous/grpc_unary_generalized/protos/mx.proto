@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package GeneralizedGRPC;
+
+message PatientIndex{
+      int32 index = 1;
+}
+
+message ECGDataList{
+      repeated ECGData ecgs = 1;
+}
+message ECGData{
+      int32 ecgValue = 1;
+      string ecgMessage = 2;
+}
+
+message SpO2DataList{
+      repeated SpO2Data spO2s = 1;
+}
+message SpO2Data{
+      int32 spO2Value = 1;
+      string spO2Message = 2;
+}
+
+message NIBPDataList{
+      repeated NIBPData nibps = 1;
+}
+message NIBPData{
+      int32 nibpValue = 1;
+      string nibpMessage = 2;
+}
+
+service TrendData{
+     rpc GetECG(PatientIndex) returns (ECGDataList) {}
+     rpc GetSpO2(PatientIndex) returns (SpO2DataList) {}
+     rpc GetNIBP(PatientIndex) returns (NIBPDataList) {}
+}

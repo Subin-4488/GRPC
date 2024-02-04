@@ -2,7 +2,6 @@
 
 int main()
 {
-
       GreetServer server;
       server.start();
       return 0;

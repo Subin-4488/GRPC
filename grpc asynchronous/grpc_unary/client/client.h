@@ -29,8 +29,20 @@ public:
       }
 
 private:
+      class CallData
+      {
+      public:
+            CallData(std::shared_ptr<GreetUser::Stub> stub);
+            ~CallData()
+            {
+                  //completionQueue.Shutdown();
+            }
+
+      private:
+      std::shared_ptr<GreetUser::Stub> stub_;
+      };
+
       std::unique_ptr<GreetUser::Stub> stub_;
-      ClientContext context;
       CompletionQueue completionQueue;
 
       Status status;
