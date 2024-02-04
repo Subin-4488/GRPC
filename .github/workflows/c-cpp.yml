@@ -16,22 +16,26 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # - name: Setup GRPC
-    #   run: |
-    #     sudo apt-get update
-    #     export MY_INSTALL_DIR=$HOME/.local
-    #     mkdir -p $MY_INSTALL_DIR
-    #     export PATH="$MY_INSTALL_DIR/bin:$PATH"
-    #     sudo apt install -y cmake
-    #     sudo apt install -y build-essential autoconf libtool pkg-config
-    #     git clone --recurse-submodules -b v1.60.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc
-    #     cd grpc
-    #     mkdir -p cmake/build
-    #     pushd cmake/build
-    #     cmake -DgRPC_INSTALL=ON \-DgRPC_BUILD_TESTS=OFF \-DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \../..
-    #     make
-    #     make install
-    #     popd
+    - name: Setup GRPC
+      run: |
+        if [ ! -d "$HOME/.local/include/grpc" ]; then
+          sudo apt-get update
+          export MY_INSTALL_DIR=$HOME/.local
+          mkdir -p $MY_INSTALL_DIR
+          export PATH="$MY_INSTALL_DIR/bin:$PATH"
+          sudo apt install -y cmake
+          sudo apt install -y build-essential autoconf libtool pkg-config
+          git clone --recurse-submodules -b v1.60.0 --depth 1 --shallow-submodules https://github.com/grpc/grpc
+          cd grpc
+          mkdir -p cmake/build
+          pushd cmake/build
+          cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR ../..
+          make
+          make install
+          popd
+        else
+          echo "gRPC already installed, skipping setup."
+        fi
 
     - name: Build and test Asynchronous GRPC Unary
       run: |
