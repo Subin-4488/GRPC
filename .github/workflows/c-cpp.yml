@@ -16,7 +16,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Build and test Asynchrounous GRPC Unary
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y protobuf-compiler libprotobuf-dev
+
+    - name: Build and test Asynchronous GRPC Unary
       run: |
         cd "grpc asynchronous/grpc_unary"
         mkdir build
@@ -25,7 +30,7 @@ jobs:
         make
         make test
     
-    - name: Build and test Asynchrounous GRPC Generalized
+    - name: Build and test Asynchronous GRPC Generalized
       run: |
         cd "../grpc_unary_generalized"
         mkdir build
@@ -34,7 +39,7 @@ jobs:
         make
         make test
 
-    - name: Build and test synchrounous GRPC Basic
+    - name: Build and test Synchronous GRPC Basic
       run: |
         cd "../../grpc synchronous/grpc_basic/"
         mkdir build
@@ -43,7 +48,7 @@ jobs:
         make
         make test
     
-    - name: Build and test synchrounous GRPC Bidirectional Stream
+    - name: Build and test Synchronous GRPC Bidirectional Stream
       run: |
         cd "../grpc_bidirectional_stream"
         mkdir build
@@ -51,7 +56,8 @@ jobs:
         cmake ..
         make
         make test
-    - name: Build and test synchrounous GRPC Server Stream
+    
+    - name: Build and test Synchronous GRPC Server Stream
       run: |
         cd "../grpc_server_stream"
         mkdir build
@@ -59,7 +65,8 @@ jobs:
         cmake ..
         make
         make test
-    - name: Build and test synchrounous GRPC Unary
+    
+    - name: Build and test Synchronous GRPC Unary
       run: |
         cd "../grpc_unary"
         mkdir build
