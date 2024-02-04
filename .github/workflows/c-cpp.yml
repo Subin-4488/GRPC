@@ -2,22 +2,34 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "Development" ]
+    branches:
+      - Development
   pull_request:
-    branches: [ "Development" ]
+    branches:
+      - Development
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build and test A folder
+      run: |
+        cd grpc\ asynchronous
+        mkdir build
+        cd build
+        cmake ..
+        make
+        make test
+
+    - name: Build and test B folder
+      run: |
+        cd ../grpc\ synchronous
+        mkdir build
+        cd build
+        cmake ..
+        make
+        make test
