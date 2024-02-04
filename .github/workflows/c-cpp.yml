@@ -18,7 +18,7 @@ jobs:
 
     - name: Build and test A folder
       run: |
-        cd grpc\ asynchronous
+        cd "grpc asynchronous"
         mkdir build
         cd build
         cmake ..
@@ -27,7 +27,7 @@ jobs:
 
     - name: Build and test B folder
       run: |
-        cd ../grpc\ synchronous
+        cd "../grpc synchronous"
         mkdir build
         cd build
         cmake ..
