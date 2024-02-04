@@ -81,14 +81,6 @@ private:
       GeneralizedGRPC::TrendData::AsyncService trendDataAsyncService;
       std::unique_ptr<Server> generalizedGRPCServer;
 
-      // GeneralizedGRPC::PatientIndex pindex;
-      // GeneralizedGRPC::ECGData ecgData;
-      // GeneralizedGRPC::ECGDataList ecgDataList;
-      // GeneralizedGRPC::SpO2Data spO2Data;
-      // GeneralizedGRPC::SpO2DataList spO2DataList;
-      // GeneralizedGRPC::NIBPData nibpData;
-      // GeneralizedGRPC::NIBPDataList nibpDataList;
-
       ECGDataList handleECGRequest(PatientIndex);
       SpO2DataList handleSpO2Request(PatientIndex);
       NIBPDataList handleNIBPRequest(PatientIndex);
