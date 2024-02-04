@@ -22,23 +22,23 @@ jobs:
         sudo apt-get install -y protobuf-compiler libprotobuf-dev
 
     - name: Set CMAKE_PREFIX_PATH for Protobuf
-      run: echo "CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake/protobuf" >> $GITHUB_ENV
+      run: echo "export CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake/protobuf" >> $GITHUB_ENV
 
     - name: Build and test Asynchronous GRPC Unary
       run: |
         cd "grpc asynchronous/grpc_unary"
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
         make
         make test
-    
+
     - name: Build and test Asynchronous GRPC Generalized
       run: |
         cd "../grpc_unary_generalized"
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
         make
         make test
 
@@ -47,33 +47,33 @@ jobs:
         cd "../../grpc synchronous/grpc_basic/"
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
         make
         make test
-    
+
     - name: Build and test Synchronous GRPC Bidirectional Stream
       run: |
         cd "../grpc_bidirectional_stream"
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
         make
         make test
-    
+
     - name: Build and test Synchronous GRPC Server Stream
       run: |
         cd "../grpc_server_stream"
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
         make
         make test
-    
+
     - name: Build and test Synchronous GRPC Unary
       run: |
         cd "../grpc_unary"
         mkdir build
         cd build
-        cmake ..
+        cmake -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
         make
         make test
