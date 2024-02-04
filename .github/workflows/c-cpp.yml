@@ -47,8 +47,7 @@ jobs:
 
     - name: Build and test Asynchronous GRPC Generalized
       run: |
-        cd ".."
-        cd "grpc_unary_generalized"
+        cd "grpc asynchronous/grpc_unary_generalized"
         mkdir build
         cd build
         cmake ..
@@ -56,8 +55,6 @@ jobs:
 
     - name: Build and test Synchronous GRPC Basic
       run: |
-        cd ".."
-        cd ".."
         cd "grpc synchronous/grpc_basic/"
         mkdir build
         cd build
@@ -66,8 +63,7 @@ jobs:
 
     - name: Build and test Synchronous GRPC Bidirectional Stream
       run: |
-        cd ".."
-        cd "grpc_bidirectional_stream"
+        cd "grpc synchronous/grpc_bidirectional_stream"
         mkdir build
         cd build
         cmake ..
@@ -75,8 +71,7 @@ jobs:
 
     - name: Build and test Synchronous GRPC Server Stream
       run: |
-        cd ".."
-        cd "grpc_server_stream"
+        cd "grpc synchronous/grpc_server_stream"
         mkdir build
         cd build
         cmake ..
@@ -84,8 +79,7 @@ jobs:
 
     - name: Build and test Synchronous GRPC Unary
       run: |
-        cd ".."
-        cd "grpc_unary"
+        cd "grpc synchronous/grpc_unary"
         mkdir build
         cd build
         cmake ..
